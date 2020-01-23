@@ -10,7 +10,7 @@ require (
 	github.com/mitchellh/go-ps v0.0.0-20170309133038-4fdf99ab2936
 	github.com/onsi/ginkgo v1.5.0
 	github.com/onsi/gomega v1.4.0
-	github.com/tommymalmqvist/csi-s3 v1.1.1
+	github.com/tommymalmqvist/csi-s3 v1.1.3
 	golang.org/x/net v0.0.0-20190213061140-3a22650c66bd
 	google.golang.org/grpc v1.13.0
 	k8s.io/kubernetes v1.13.4
