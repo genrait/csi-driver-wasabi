@@ -8,6 +8,7 @@ import (
 	"path"
 
 	"github.com/golang/glog"
+	utilexec "k8s.io/utils/exec"
 	"k8s.io/utils/mount"
 )
 
@@ -131,7 +132,7 @@ func (s3backer *s3backerMounter) writePasswd() error {
 }
 
 func formatFs(fsType string, device string) error {
-	diskMounter := &mount.SafeFormatAndMount{Interface: mount.New(""), Exec: exec.New()}
+	diskMounter := &mount.SafeFormatAndMount{Interface: mount.New(""), Exec: utilexec.New()}
 	format, err := diskMounter.GetDiskFormat(device)
 	if err != nil {
 		return err
