@@ -131,7 +131,7 @@ func (s3backer *s3backerMounter) writePasswd() error {
 }
 
 func formatFs(fsType string, device string) error {
-	diskMounter := &mount.SafeFormatAndMount{Interface: mount.New(""), Exec: mount.NewOsExec()}
+	diskMounter := &mount.SafeFormatAndMount{Interface: mount.New(""), Exec: exec.New()}
 	format, err := diskMounter.GetDiskFormat(device)
 	if err != nil {
 		return err
