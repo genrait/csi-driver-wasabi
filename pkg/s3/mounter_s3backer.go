@@ -8,7 +8,7 @@ import (
 	"path"
 
 	"github.com/golang/glog"
-	"k8s.io/utils/pkg/mount"
+	"k8s.io/utils/mount"
 )
 
 // Implements Mounter

@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/golang/glog"
-	"k8s.io/utils/pkg/mount"
+	"k8s.io/utils/mount"
 )
 
 // Mounter interface which can be implemented
