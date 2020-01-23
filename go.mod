@@ -1,4 +1,4 @@
-module github.com/ctrox/csi-s3
+module github.com/tommymalmqvist/csi-s3
 
 require (
 	github.com/StackExchange/wmi v0.0.0-20180116203802-5d049714c4a6 // indirect
@@ -24,8 +24,6 @@ require (
 	github.com/shirou/gopsutil v0.0.0-20180625081143-4a180b209f5f // indirect
 	github.com/sirupsen/logrus v1.0.5 // indirect
 	github.com/smartystreets/goconvey v0.0.0-20190222223459-a17d461953aa // indirect
-	github.com/spf13/afero v1.2.1 // indirect
-	github.com/stretchr/testify v1.3.0 // indirect
 	github.com/urfave/cli v1.20.0 // indirect
 	golang.org/x/net v0.0.0-20190213061140-3a22650c66bd
 	golang.org/x/sync v0.0.0-20190227155943-e225da77a7e6 // indirect
@@ -36,7 +34,8 @@ require (
 	gopkg.in/ini.v1 v1.41.0
 	gopkg.in/yaml.v2 v2.2.1 // indirect
 	k8s.io/apimachinery v0.0.0-20180714051327-705cfa51a97f // indirect
-	k8s.io/klog v0.2.0 // indirect
 	k8s.io/kubernetes v1.13.4
-	k8s.io/utils v0.0.0-20180703210027-ab9069044f32 // indirect
+	k8s.io/utils v0.0.0-20200122174043-1e243dd1a584
 )
+
+go 1.13
