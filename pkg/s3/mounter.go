@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/golang/glog"
-	"k8s.io/utils/mount"
+	"k8s.io/kubernetes/pkg/util/mount"
 )
 
 // Mounter interface which can be implemented
@@ -17,38 +17,9 @@ type Mounter interface {
 	Mount(source string, target string) error
 }
 
-const (
-	s3fsMounterType     = "s3fs"
-	goofysMounterType   = "goofys"
-	s3backerMounterType = "s3backer"
-	rcloneMounterType   = "rclone"
-	mounterTypeKey      = "mounter"
-)
-
 // newMounter returns a new mounter depending on the mounterType parameter
 func newMounter(bucket *bucket, cfg *Config) (Mounter, error) {
-	mounter := bucket.Mounter
-	// Fall back to mounterType in cfg
-	if len(bucket.Mounter) == 0 {
-		mounter = cfg.Mounter
-	}
-	switch mounter {
-	case s3fsMounterType:
-		return newS3fsMounter(bucket, cfg)
-
-	case goofysMounterType:
-		return newGoofysMounter(bucket, cfg)
-
-	case s3backerMounterType:
-		return newS3backerMounter(bucket, cfg)
-
-	case rcloneMounterType:
-		return newRcloneMounter(bucket, cfg)
-
-	default:
-		// default to s3backer
-		return newS3backerMounter(bucket, cfg)
-	}
+	return newRcloneMounter(bucket, cfg)
 }
 
 func fuseMount(path string, command string, args []string) error {

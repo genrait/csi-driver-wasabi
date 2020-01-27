@@ -17,7 +17,11 @@ limitations under the License.
 package s3
 
 import (
+	"errors"
 	"fmt"
+	_ "errors"
+	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/client-go/kubernetes"
 	"os"
 
 	"github.com/golang/glog"
@@ -26,7 +30,7 @@ import (
 	"github.com/container-storage-interface/spec/lib/go/csi"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"k8s.io/utils/mount"
+	"k8s.io/kubernetes/pkg/util/mount"
 
 	csicommon "github.com/kubernetes-csi/drivers/pkg/csi-common"
 )
@@ -211,4 +215,22 @@ func checkMount(targetPath string) (bool, error) {
 		}
 	}
 	return notMnt, nil
+}
+
+func (ns *nodeServer) getRegionFromConfigMap(namespace, name string) (string, error) {
+
+	result := ""
+	configmap, err := ns.kclient.CoreV1().ConfigMaps(namespace).Get(name, v1.GetOptions{})
+
+	if err != nil {
+		glog.V(4).Infof("%s", err.Error())
+		return result, err
+	}
+
+	if val, ok := configmap.Data["region"]; ok {
+		return val, nil
+	} else {
+		return "", errors.New("No region in configmap")
+	}
+
 }
